@@ -1,0 +1,168 @@
+<div class="card">
+  <h4 class="card-header bg-dark text-light" >employee Form</h4>
+  <div class="card-body">
+    <form [formGroup]="employeeForm">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>User Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              formControlName="username"
+              [ngClass]="{
+                'is-invalid':
+                  valid['username'].errors &&
+                  (valid['username'].dirty || valid['username'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['username'].errors &&
+                (valid['username'].dirty || valid['username'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['username'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['username'].errors['maxlength']">
+                Maximum length is 15 Characters
+              </div>
+              <div *ngIf="valid['username'].errors['pattern']">
+                Enter a valid User Name
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>E-mail</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="mailId"
+              [ngClass]="{
+                'is-invalid':
+                  valid['mailId'].errors &&
+                  (valid['mailId'].dirty || valid['mailId'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['mailId'].errors &&
+                (valid['mailId'].dirty || valid['mailId'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['mailId'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['mailId'].errors['maxlength']">
+                Maximum length is 15 Characters
+              </div>
+              <div *ngIf="valid['mailId'].errors['pattern']">
+                Enter a valid E-mail
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="contactNo"
+              [ngClass]="{
+                'is-invalid':
+                  valid['contactNo'].errors &&
+                  (valid['contactNo'].dirty || valid['contactNo'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['contactNo'].errors &&
+                (valid['contactNo'].dirty || valid['contactNo'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['contactNo'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['contactNo'].errors['pattern']">
+                Enter a Valid Phone Number
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="from-group">
+            <label for="">Department</label>
+            <select class="form-control" formControlName="department">
+              <option value="" [disabled]="true">--Select--</option>
+              <option
+                *ngFor="let info of departmentMasterList"
+                [value]="info.deptId"
+              >
+                {{ info.deptName }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="from-group">
+            <label for="">Area</label>
+            <select class="form-control" formControlName="area">
+              <option value="" [disabled]="true">--Select--</option>
+              <option *ngFor="let info of areaMasterList" [value]="info.id">
+                {{ info.areaName }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Date of Joining</label>
+            <input
+              class="form-control"
+              formControlName="joiningdate"
+              type="date"
+              [max]="maxDate"
+            />
+            <div
+              *ngIf="
+                valid['joiningdate'].errors &&
+                (valid['joiningdate'].dirty || valid['joiningdate'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['joiningdate'].errors['required']">
+                Field Is Required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="card-footer">
+    <div class="float-right">
+      <button
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        *ngIf="employeeForm.valid"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

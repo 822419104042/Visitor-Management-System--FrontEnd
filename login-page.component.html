@@ -1,0 +1,102 @@
+<div class="background-card min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <form [formGroup]="LoginForm">
+      <c-row class="justify-content-center">
+        <c-col md="6">
+          <c-card-group>
+            <c-card class="p-4">
+              <c-card-body>
+               
+                  <div class="form-group">
+                    <h1>Login</h1>
+
+                    <c-input-group class="mb-3">
+                      <span cInputGroupText>
+                        <svg cIcon name="cilUser"></svg>
+                      </span>
+                      <input
+                        autoComplete="emailId"
+                        cFormControl
+                        placeholder="Username"
+                        type="text"
+                        class="form-control"
+                        id="usertname"
+                        name="emailId"
+                        formControlName="emailId"
+                        [ngClass]="{
+                          'is-invalid':
+                            valid['emailId'].errors &&
+                            (valid['emailId'].dirty || valid['emailId'].touched)
+                        }"
+                      />
+                      <div
+                        *ngIf="
+                          valid['emailId'].errors &&
+                          (valid['emailId'].dirty || valid['emailId'].touched)
+                        "
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="valid['emailId'].errors['required']">
+                          Field Is Required
+                        </div>
+                      </div>
+                    </c-input-group>
+                    <c-input-group class="mb-4">
+                      <span cInputGroupText>
+                        <svg cIcon name="cilLockLocked"></svg>
+                      </span>
+                      <input
+                        autoComplete="current-password"
+                        cFormControl
+                        placeholder="Password"
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        formControlName="password"
+                        [ngClass]="{
+                          'is-invalid':
+                            valid['password'].errors &&
+                            (valid['password'].dirty ||
+                              valid['password'].touched)
+                        }"
+                      />
+                      <div
+                        *ngIf="
+                          valid['password'].errors &&
+                          (valid['password'].dirty || valid['password'].touched)
+                        "
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="valid['password'].errors['password']">
+                          Field Is Required
+                        </div>
+                      </div>
+                    </c-input-group>
+                    <c-row>
+                      <c-col xs="6">
+                        <button
+                          cButton
+                          class="px-4"
+                          color="primary"
+                          (click)="onLoginClick()"
+                          [disabled]="!LoginForm.valid"
+                        >
+                          Login
+                        </button>
+                      </c-col>
+                      <c-col class="text-right" xs="6">
+                        <button cButton class="px-0" color="link">
+                          Forgot password?
+                        </button>
+                      </c-col>
+                    </c-row>
+                  </div> 
+              </c-card-body>
+            </c-card>
+          </c-card-group>
+        </c-col>
+      </c-row>
+    </form>
+  </c-container>
+</div>

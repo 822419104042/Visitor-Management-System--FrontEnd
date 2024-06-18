@@ -1,0 +1,147 @@
+<div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header bg-dark text-light">
+        <h4>Area Master</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Area Name</th>
+              <th>Type</th>
+              <th *ngIf="addSet == true">Option</th>
+            </tr>
+          </thead>
+          <thead>
+            <tr>
+              <th>
+                <span
+                  ><input
+                    [(ngModel)]="search.areaName"
+                    placeholder="Search area name"
+                    type="text"
+                    class="form-control"
+                /></span>
+              </th>
+              <th>
+                <span
+                  ><input
+                    [(ngModel)]="search.areaType"
+                    placeholder="Search type"
+                    type="text"
+                    class="form-control"
+                /></span>
+              </th>
+              <th style="position: relative; text-align: center">
+                <button
+                  type="button"
+                  (click)="onadd()"
+                  class="btn btn-info btn-xs fa fa-plus"
+                >
+                  Add
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="addSet == true">
+              <td>
+                <span>
+                  <input type="text"  [(ngModel)]="data.areaName" class="form-control" />
+                </span>
+              </td>
+              <td>
+                <span>
+                  <input type="text"  [(ngModel)]="data.areaType" class="form-control" />
+                </span>
+              </td>
+              <td
+                *ngIf="addSet == true"
+                style="position: relative; text-align: center"
+              >
+              <button
+                [hidden]="!data.areaName"
+                class="btn btn-primary"
+                (click)="onSave(data)"
+              >
+                <i class="fas fa-check"></i>
+              </button>
+              <button *ngIf="!data.areaName" class="btn btn-info disabled">
+                <i class="fas fa-check"></i>
+              </button>
+              <button class="btn btn-danger" (click)="onaddCancel()">
+                <i class="fa fa-window-close"></i>
+              </button>
+              </td>
+            </tr>
+            <tr *ngFor="let emp of dataList">
+              <td>
+                <span *ngIf="selectedType == emp"
+                  ><input
+                    [(ngModel)]="emp.areaName"
+                    type="text"
+                    class="i form-control"
+                /></span>
+                <span [hidden]="selectedType == emp">{{
+                  emp.areaName
+                }}</span>
+              </td>
+              <td>
+                <span *ngIf="selectedType == emp"
+                  ><input
+                    
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="emp.areaType" /></span
+                ><span [hidden]="selectedType == emp">{{
+                  emp.areaType
+                }}</span>
+              </td>
+              <td
+                [hidden]="
+                  (addAccess == 0 && editAccess == 0) || selectedType == emp
+                "
+                style="position: relative; text-align: center"
+              >
+                <a
+                  [hidden]="selectedType == emp"
+                  (click)="onEdit(emp)"
+                  [hidden]="editAccess == 0"
+                  ><button class="btn btn-primary" style="font-size: 15px">
+                    <i class="fas fa-edit"></i></button
+                ></a>
+              </td>
+              <td
+                [hidden]="
+                  (addAccess == 0 && editAccess == 0) || selectedType != emp
+                "
+                style="position: relative; text-align: center"
+              >
+              <button [hidden]="!emp.areaName" class="btn btn-primary" (click)="onSave(emp)"
+                ><i class="fas fa-check"></i
+              ></button>
+              <button *ngIf="!emp.areaName" class="btn btn-info disabled"
+                ><i class="fas fa-check "></i
+              ></button>
+              <button class="btn btn-danger" (click)="onCancel()"
+                ><i class="fas fa-window-close "></i
+              ></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h4
+          [hidden]="dataList.length != 0 || addSet == true"
+          class="text-center"
+          style="color: blue"
+        >
+          No Data Found
+        </h4>
+      </div>
+      <!-- <div class="card-footer footercss">
+        <div class="pull-right">
+          <button class="btn btn-danger fa fa-window-close">&nbsp;Close</button> 
+        </div>
+      </div> -->
+    </div>
+  </div>

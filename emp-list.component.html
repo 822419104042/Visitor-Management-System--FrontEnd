@@ -1,0 +1,52 @@
+<div class="animated fadeIn">
+    <div class="card">
+      <div class="card-header bg-dark text-light">
+        <h4>List Of Employee</h4>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"></div>
+      </div>
+      <div class="card-body over-flow-auto">
+        <table class="table table-striped">
+          <thead>
+            <tr style="background-color: grey">
+        
+              <th><div [ngStyle]="{ width: columnWidths[4] }">FirstName</div></th>
+              <th><div [ngStyle]="{ width: columnWidths[4] }">LastName</div></th>
+              <th><div [ngStyle]="{ width: columnWidths[4] }">Date Of Birth</div></th>
+              <th><div [ngStyle]="{ width: columnWidths[4] }">Gender</div></th>              
+              <th><div [ngStyle]="{ width: columnWidths[4] }">E-mail</div></th>
+              <th><div [ngStyle]="{ width: columnWidths[4] }">Phone Number</div></th>
+              <th><div [ngStyle]="{ width: columnWidths[4] }">Blood Group</div></th>
+              <th><div [ngStyle]="{ width: columnWidths[4] }">Address</div></th>
+              <th><div [ngStyle]="{ width: columnWidths[4] }">Department</div></th>
+              <th><div [ngStyle]="{ width: columnWidths[4] }">Date of Joining</div></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let value of list">
+              <td>{{ value.firstname }}</td>
+              <td>{{ value.lastname }}</td>
+              <td>{{ value.dob }}</td>
+              <td>{{ value.gender}}</td>
+              <td>{{ value.mailId}}</td>
+              <td>{{ value.contactNo}}</td>
+              <td>{{ value.group}}</td>
+              <td>{{ value.address}}</td>
+              <td>{{ value.departmentName}}</td>
+              <td>{{ value.joiningdate}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+        <div class="float-right">
+          <button class="px-4 btn btn-primary"(click)="previousPage()">
+            Previous Page
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -1,0 +1,134 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header bg-dark text-light">
+      <h4>Visitor Register</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-form-field>
+          <mat-label>Select Date Range</mat-label>
+          <mat-date-range-input [rangePicker]="dateRangePicker">
+            <input matStartDate placeholder="Start date" #dateRangeStart />
+            <input
+              matEndDate
+              placeholder="End date"
+              #dateRangeEnd
+              (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matPrefix [for]="dateRangePicker">
+          </mat-datepicker-toggle>
+          <mat-date-range-picker #dateRangePicker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="card-body over-flow-auto">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr style="background-color: grey">
+            <th>
+              <div [ngStyle]="{ width: columnWidths[0] }">Visitor Name</div>
+            </th>
+            <th>
+              <div [ngStyle]="{ width: columnWidths[3] }">Date of visit</div>
+            </th>
+            <th><div [ngStyle]="{ width: columnWidths[4] }">Phone no</div></th>
+
+            <th>
+              <div [ngStyle]="{ width: columnWidths[6] }">
+                Person to be visited
+              </div>
+            </th>
+            <th>
+              <div [ngStyle]="{ width: columnWidths[7] }">Department</div>
+            </th>
+            <th>
+              <div [ngStyle]="{ width: columnWidths[7] }">Area</div>
+            </th>
+            <th><div [ngStyle]="{ width: columnWidths[4] }">access no</div></th>
+            <th><div [ngStyle]="{ width: columnWidths[4] }">Author</div></th>
+            <th><div [ngStyle]="{ width: columnWidths[4] }">purpose</div></th>
+            <th><div [ngStyle]="{ width: columnWidths[4] }">gender</div></th>
+            <th><div [ngStyle]="{ width: columnWidths[4] }">inTime</div></th>
+            <th><div [ngStyle]="{ width: columnWidths[4] }">outTime</div></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let info of dataList">
+            <td>{{ info.visitorName }}</td>
+            <td>{{ info.date }}</td>
+            <td>{{ info.phoneno }}</td>
+            <td>{{ info.personName }}</td>
+            <td>{{ info.departmentName }}</td>
+            <td>{{ info.areaName }}</td>
+            <td>{{ info.accessno }}</td>
+            <td>{{ info.authorized }}</td>
+            <td>{{ info.purpose }}</td>
+            <td>{{ info.gender }}</td>
+            <td>{{ info.inTime }}</td>
+            <td> {{ info.outTime }}
+
+              <button
+                class="btn btn-primary"
+                (click)="outTimeUpdate(info.id)"
+                 [hidden]="info.outTime != ''&&info.outTime != null" 
+              >
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+      <div class="float-right">
+        <button class="px-4 btn btn-primary" (click)="previousPage()">
+          Previous Page
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  bsModal
+  #timeModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  [config]="{ backdrop: 'static' }"
+>
+  <div class="modal-dialog modal-primary modal-sm">
+    <div class="modal-content">
+      <div class="modal-header header-css">
+        <h4 class="modal-title text-dark">Out Time Update</h4>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="timeModal.hide()"
+          aria-label="Close"
+          style="margin-top: -4px"
+        >
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body over-flow-auto">
+        <input class="form-control" type="time" [(ngModel)]="outTime" />
+      </div>
+
+      <div class="modal-footer footercss"></div>
+      <button
+          type="button"
+          class="btn btn-primary"
+          style="margin-top: -4px; width:100px; margin-left:180px;"
+          (click)="onUpdateOutTime()"
+          [disabled]="outTime == null"
+         >
+          <i class="fa-regular fa-circle-check"></i>
+        </button>
+    </div>
+  </div>
+</div>
+
+

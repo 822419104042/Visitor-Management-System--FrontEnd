@@ -1,0 +1,309 @@
+<div class="card">
+    <h4 class="card-header bg-dark text-light" >employee Form</h4>
+    <div class="card-body">
+      <form [formGroup]="employeeForm">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <label>FirstName</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstname"
+                name="firstname"
+                formControlName="firstname"
+                [ngClass]="{
+                  'is-invalid':
+                    valid['firstname'].errors &&
+                    (valid['firstname'].dirty || valid['firstname'].touched)
+                }"
+              />
+              <div
+                *ngIf="
+                  valid['firstname'].errors &&
+                  (valid['firstname'].dirty || valid['firstname'].touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="valid['firstname'].errors['required']">
+                  Field Is Required
+                </div>
+                <div *ngIf="valid['firstname'].errors['maxlength']">
+                  Maximum length is 15 Characters
+                </div>
+                <div *ngIf="valid['firstname'].errors['pattern']">
+                  Enter a valid User Name
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <label>LastName</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastname"
+                name="lastname"
+                formControlName="lastname"
+                [ngClass]="{
+                  'is-invalid':
+                    valid['lastname'].errors &&
+                    (valid['lastname'].dirty || valid['lastname'].touched)
+                }"
+              />
+              <div
+                *ngIf="
+                  valid['lastname'].errors &&
+                  (valid['lastname'].dirty || valid['lastname'].touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="valid['lastname'].errors['required']">
+                  Field Is Required
+                </div>
+                <div *ngIf="valid['lastname'].errors['maxlength']">
+                  Maximum length is 2 Characters
+                </div>
+                <div *ngIf="valid['lastname'].errors['pattern']">
+                  Enter a valid User Name
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <label>Date Of Birth</label>
+              <input
+                class="form-control"
+                formControlName="dob"
+                type="date"
+                [max]="maxDate"
+              />
+              <div
+                *ngIf="
+                  valid['dob'].errors &&
+                  (valid['dob'].dirty || valid['dob'].touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="valid['dob'].errors['required']">
+                  Field Is Required
+                </div>
+              </div>
+            </div>
+          </div>
+  
+
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-3">
+            <label for="gender">Gender</label>
+            <input
+              type="radio"
+              value="male"
+              id="gender"
+              name="gender"
+              formControlName="gender"
+            />Male
+            <input
+              type="radio"
+              value="female"
+              id="gender"
+              name="gender"
+              formControlName="gender"
+            />Female
+            <div
+              *ngIf="
+                valid['gender'].errors &&
+                (valid['gender'].dirty || valid['gender'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['gender'].errors['required']">
+                Field Is Required
+              </div>
+            </div>
+          </div>
+
+          
+  
+  
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <label>E-mail</label>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="mailId"
+                [ngClass]="{
+                  'is-invalid':
+                    valid['mailId'].errors &&
+                    (valid['mailId'].dirty || valid['mailId'].touched)
+                }"
+              />
+              <div
+                *ngIf="
+                  valid['mailId'].errors &&
+                  (valid['mailId'].dirty || valid['mailId'].touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="valid['mailId'].errors['required']">
+                  Field Is Required
+                </div>
+                <div *ngIf="valid['mailId'].errors['maxlength']">
+                  Maximum length is 15 Characters
+                </div>
+                <div *ngIf="valid['mailId'].errors['pattern']">
+                  Enter a valid E-mail
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="contactNo"
+                [ngClass]="{
+                  'is-invalid':
+                    valid['contactNo'].errors &&
+                    (valid['contactNo'].dirty || valid['contactNo'].touched)
+                }"
+              />
+              <div
+                *ngIf="
+                  valid['contactNo'].errors &&
+                  (valid['contactNo'].dirty || valid['contactNo'].touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="valid['contactNo'].errors['required']">
+                  Field Is Required
+                </div>
+                <div *ngIf="valid['contactNo'].errors['pattern']">
+                  Enter a Valid Phone Number
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <label >Blood Group</label>
+               <select formControlName="group" class="form-control">
+                <option value="" [disabled]="true">--Select--</option>
+             
+              <option value="O+ve">O+ve</option>
+              <option value="O-ve">O-ve</option>
+              <option value="A+ve">A+ve</option>
+              <option value="A-ve">A-ve</option>
+              <option value="A-ve">A-ve</option>
+              <option value="B+ve">B+ve</option>
+              <option value="B-ve">B-ve</option>
+              <option value="AB+ve">AB+ve</option>
+              <option value="AB-ve">AB-ve</option>
+              </select>
+              <div
+              *ngIf="
+                valid['group'].errors &&
+                (valid['group'].dirty || valid['group'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['group'].errors['required']">
+                Field Is Required
+              </div>
+            </div>
+           </div>
+          </div> 
+          
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Address</label>
+            <input
+              type="textarea"
+              class="form-control"
+              id="address"
+              name="address"
+              formControlName="address"
+              [ngClass]="{
+                'is-invalid':
+                  valid['address'].errors &&
+                  (valid['address'].dirty || valid['address'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['address'].errors &&
+                (valid['address'].dirty || valid['address'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['address'].errors['address']">
+                Field Is Required
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="from-group">
+            <label for="">Department</label>
+            <select class="form-control" formControlName="department">
+              <option value="" [disabled]="true">--Select--</option>
+              <option
+                *ngFor="let info of departmentMasterList"
+                [value]="info.deptId"
+              >
+                {{ info.deptName }}
+              </option>
+            </select>
+          </div>
+        </div>
+  
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <label>Date of Joining</label>
+              <input
+                class="form-control"
+                formControlName="joiningdate"
+                type="date"
+               
+              />
+              <div
+                *ngIf="
+                  valid['joiningdate'].errors &&
+                  (valid['joiningdate'].dirty || valid['joiningdate'].touched)
+                "
+                class="invalid-feedback"
+              >
+                <div *ngIf="valid['joiningdate'].errors['required']">
+                  Field Is Required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+    <div class="card-footer">
+      <div class="float-right">
+        <button
+          class="btn btn-primary"
+          (click)="onSubmit()"
+          *ngIf="employeeForm.valid"
+         
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+  

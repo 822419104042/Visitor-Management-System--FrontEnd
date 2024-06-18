@@ -1,0 +1,328 @@
+<div class="card">
+  <h4 class="card-header  bg-dark text-light">Visitor Form</h4>
+  <div class="card-body">
+    <form [formGroup]="contactForm">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Visitor Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="visitorName"
+              name="visitorName"
+              formControlName="visitorName"
+              [ngClass]="{
+                'is-invalid':
+                  valid['visitorName'].errors &&
+                  (valid['visitorName'].dirty || valid['visitorName'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['visitorName'].errors &&
+                (valid['visitorName'].dirty || valid['visitorName'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['visitorName'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['visitorName'].errors['maxlength']">
+                Maximum length is 15 Characters
+              </div>
+              <div *ngIf="valid['visitorName'].errors['pattern']">
+                Enter a valid Visitor Name
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Date of Visit</label>
+            <input class="form-control" formControlName="date" type="date"[max]="maxDate"/>
+            <div
+              *ngIf="
+                valid['date'].errors &&
+                (valid['date'].dirty || valid['date'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['date'].errors['required']">
+                Field Is Required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="phoneno"
+              name="phoneno"
+              formControlName="phoneno"
+              [ngClass]="{
+                'is-invalid':
+                  valid['phoneno'].errors &&
+                  (valid['phoneno'].dirty || valid['phoneno'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['phoneno'].errors &&
+                (valid['phoneno'].dirty || valid['phoneno'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['phoneno'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['phoneno'].errors['pattern']">
+                Enter a Valid Phone Number
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mt-3">
+          <label for="gender">Gender</label>
+          <input
+            type="radio"
+            value="male"
+            id="gender"
+            name="gender"
+            formControlName="gender"
+          />Male
+          <input
+            type="radio"
+            value="female"
+            id="gender"
+            name="gender"
+            formControlName="gender"
+          />Female
+          <div
+            *ngIf="
+              valid['gender'].errors &&
+              (valid['gender'].dirty || valid['gender'].touched)
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="valid['gender'].errors['required']">
+              Field Is Required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Person to be visited</label>
+            <select
+              class="form-select"
+              formControlName="person"
+              (change)="onChangePerson($any($event.target).value)"
+              [ngClass]="{
+                'is-invalid':
+                  valid['person'].errors &&
+                  (valid['person'].dirty || valid['person'].touched)
+              }"
+            >
+              <option value="" [disabled]="true">--Select--</option>
+              <option *ngFor="let info of employeeDataList" [value]="info.empid">
+                {{ info.username }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                valid['person'].errors &&
+                (valid['person'].dirty || valid['person'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['person'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['person'].errors['maxlength']">
+                Maximum length is 15 Characters
+              </div>
+              <div *ngIf="valid['person'].errors['pattern']">
+                Enter a valid Name
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Department </label>
+            <select class="form-select" formControlName="department">
+              <option value="" [disabled]="true">--Select--</option>
+              <option
+                *ngFor="let info of departmentMasterList"
+                [value]="info.deptId"
+              >
+                {{ info.deptName }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="from-group">
+            <label for="">Area</label>
+            <select class="form-control" formControlName="area">
+              <option value="" [disabled]="true">--Select--</option>
+              <option
+                *ngFor="let info of areaMasterList"
+                [value]="info.id"
+              >
+                {{ info.areaName }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Authorized by</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="authorized"
+              [ngClass]="{
+                'is-invalid':
+                  valid['authorized'].errors &&
+                  (valid['authorized'].dirty || valid['authorized'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['authorized'].errors &&
+                (valid['authorized'].dirty || valid['authorized'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['authorized'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['authorized'].errors['maxlength']">
+                Maximum length is 15 Characters
+              </div>
+              <div *ngIf="valid['authorized'].errors['pattern']">
+                Enter a valid Name
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Access Card No</label>
+            <input
+              type="text"
+              class="form-control"
+              id="accessno"
+              name="accessno"
+              formControlName="accessno"
+              [ngClass]="{
+                'is-invalid':
+                  valid['accessno'].errors &&
+                  (valid['accessno'].dirty || valid['accessno'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['accessno'].errors &&
+                (valid['accessno'].dirty || valid['accessno'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['accessno'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['accessno'].errors['pattern']">
+                Enter a Valid Access card no
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>purpose</label>
+            <input
+              type="text"
+              class="form-control"
+              id="purpose"
+              name="purpose"
+              formControlName="purpose"
+              [ngClass]="{
+                'is-invalid':
+                  valid['purpose'].errors &&
+                  (valid['purpose'].dirty || valid['purpose'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['purpose'].errors &&
+                (valid['purpose'].dirty || valid['purpose'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['purpose'].errors['purpose']">
+                Field Is Required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <label>Intime</label>
+            <input
+              type="time"
+              class="form-control"
+              id="inTime"
+              name="inTime"
+              formControlName="inTime"
+              [ngClass]="{
+                'is-invalid':
+                  valid['inTime'].errors &&
+                  (valid['inTime'].dirty || valid['inTime'].touched)
+              }"
+            />
+            <div
+              *ngIf="
+                valid['inTime'].errors &&
+                (valid['inTime'].dirty || valid['inTime'].touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="valid['inTime'].errors['required']">
+                Field Is Required
+              </div>
+              <div *ngIf="valid['inTime'].errors['pattern']">Enter In-Time</div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <div class="float-right">
+      <button
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        *ngIf="contactForm.valid"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

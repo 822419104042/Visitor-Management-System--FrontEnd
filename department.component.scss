@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    padding: 8px;
+    
+  }
+  
+  th {
+    background-color:white;
+    border: 1px solid black;
+    padding: 8px;
+  }
+
+  .top-card{
+    background-image: linear-gradient(to right,yellow,blue);
+    font-weight: bold;
+    font-size: 25px;
+    font-family: roboto;
+    height: 7vh;
+    width: 78vw;
+    border-radius: 0px; 
+  }
+
+button{
+    width: 100px;
+    
+}
+  
